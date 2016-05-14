@@ -1,18 +1,19 @@
 var http = require('http'),
-    fs   = require('fs'),
-    filePath = './temptations/1-01 My Girl.mp3',
-    stat = fs.statSync(filePath);
+    fs   = require('fs');
 
-var port = process.env.PORT || 5000;
+var port = 5000;
+
+var AWS = require('aws-sdk');
+AWS.config.region = 'us-east-1';
 
 http.createServer(function(request, response) {
 
     response.writeHead(200, {
-        'Content-Type': 'audio/mpeg',
-        'Content-Length': stat.size
+        'Content-Type': 'audio/mpeg'
     });
 
-    // We replaced all the event handlers with a simple call to util.pump()
-    fs.createReadStream(filePath).pipe(response);
+    var s3 = new AWS.S3();
+    var params = {Bucket: 'michaelrauhmusic', Key: 'temptations/my_girl.mp3'};
+    s3.getObject(params).createReadStream().pipe(response);
 })
 .listen(port);
