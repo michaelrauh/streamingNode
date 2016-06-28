@@ -1,7 +1,7 @@
 var http = require('http'),
     fs   = require('fs');
 
-var port = 5000;
+var port = process.env.PORT || 5000;
 
 var AWS = require('aws-sdk');
 AWS.config.region = 'us-east-1';

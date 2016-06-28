@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/michaelrauh/streamingNode/issues"
   },
-  "homepage": "https://github.com/michaelrauh/streamingNode#readme"
+  "homepage": "https://github.com/michaelrauh/streamingNode#readme",
+  "dependencies": {
+    "aws-sdk": "^2.3.11"
+  }
 }
